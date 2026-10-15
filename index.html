@@ -1,18 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#ee4d2d">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#96080D">
   <meta name="description" content="JajanKuy, teman ngemil serumu.">
-  <title>JajanKuy — Beranda</title>
-  <link rel="stylesheet" href="stylepembayaran.css">
+  <title>JajanKuy &mdash; Teman Ngemil Kamu</title>
+  <link rel="stylesheet" href="index.css">
 </head>
-<body class="home-page">
-  <header class="topbar"><div class="topbar-inner"><a class="brand" href="index.html" aria-label="JajanKuy"><img class="brand-logo" src="JajanKuy_Snack_Emblem.png" alt="Logo JajanKuy"></a><span class="header-divider"></span><h1>Beranda</h1></div></header>
-  <main class="home-content">
-    <section class="home-hero"><div><span class="home-kicker">SELAMAT DATANG DI JAJANKUY</span><h1>Waktunya ngemil<br><span>yang kamu suka!</span></h1><p>Temukan camilan pilihan untuk menemani hari dan ceritamu.</p><a class="place-order home-cta" href="prosespembayaran.html">Lanjut ke Checkout <span>›</span></a></div><img src="JajanKuy_Snack_Emblem.png" alt="Aneka camilan JajanKuy"></section>
-    <section class="home-products"><h2>Camilan favoritmu menunggu</h2><p>Pesananmu sudah selesai? Yuk, pilih camilan lagi.</p><a href="prosespembayaran.html">Lihat keranjang dan checkout →</a></section>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="JajanKuy, beranda">
+      <img src="asset/JajanKuy_Snack_Emblem.png" alt="Logo JajanKuy">
+      <span>Jajan<span class="brand-highlight">Kuy</span></span>
+    </a>
+    <nav class="header-actions" aria-label="Navigasi akun">
+      <a class="login-link" href="loginpage/login.html">Login</a>
+      <a class="cart-link" href="Basket%20Page/basket-filled.html"><span aria-hidden="true">&#x1F6D2;</span> Keranjang <span class="cart-count">0</span></a>
+    </nav>
+  </header>
+  <main id="beranda">
+    <section class="products-section" id="produk">
+      <div class="section-heading">
+        <div><span class="eyebrow">PILIHAN BUAT KAMU</span><h1>Camilan <span>Favorit</span></h1></div>
+        <a class="see-all" href="#produk">Lihat semua <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <div class="product-grid" id="produk-gueh"></div>
+    </section>
   </main>
+  <footer><a class="footer-brand" href="index.html">Jajan<span>Kuy</span></a>
+    <p>Jajan enak, hati senang. &#x2728;</p><small>&copy; 2026 JajanKuy.</small>
+  </footer>
+  <script src="index.js" defer></script>
 </body>
 </html>
