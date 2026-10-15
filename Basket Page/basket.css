@@ -1,0 +1,165 @@
+/* Selector dasar: tag, class, dan id. Warna ditulis langsung. */
+div,
+aside,
+input,
+button {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: white;
+  color: #7A0402;
+  font: 14px/1.5 Arial, sans-serif;
+}
+
+.container {
+  width: 90%;
+  max-width: 1180px;
+  margin: auto;
+}
+
+a {
+  color: #96080D;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+  padding: 8px;
+  border: 1px solid #E99731;
+  border-radius: 6px;
+}
+
+button {
+  cursor: pointer;
+  background: #FDB627;
+  color: #7A0402;
+}
+
+.header-inner,
+nav,
+.basket-layout,
+.cart-item,
+.controls,
+dl div,
+.total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.brand-logo {
+  width: 76px;
+  display: block;
+}
+
+#keranjang {
+  padding: 40px 0 56px;
+}
+
+.section-heading,
+.cart-item,
+.total {
+  margin-bottom: 24px;
+}
+
+.heading-badge,
+.delivery {
+  background: #FEEFC8;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.cart-panel {
+  flex: 2 1 420px;
+  min-width: 0;
+}
+
+.cart-panel,
+.summary,
+.empty-cart {
+  padding: 20px;
+  border: 1px solid #FAC03E;
+  border-radius: 12px;
+}
+
+.summary {
+  flex: 1 1 260px;
+  min-width: 0;
+  background: #fffaf0;
+  align-self: flex-start;
+}
+
+.empty-cart,
+.site-footer {
+  padding: 32px 16px;
+  text-align: center;
+  background: #fffaf0;
+}
+
+.empty-art,
+.food-art {
+  font-size: 48px;
+}
+
+.item-info {
+  flex: 1 1 140px;
+}
+
+.quantity input {
+  width: 44px;
+}
+
+.checkout {
+  width: 100%;
+  padding: 14px;
+  font-weight: bold;
+}
+
+.notice {
+  position: fixed;
+  bottom: 16px;
+  left: 5%;
+  right: 5%;
+  padding: 16px;
+  background: #7A0402;
+  color: white;
+}
+
+/* Detail tampilan agar tetap ringkas dan mudah dipelajari */
+.site-header {
+  border-bottom: 1px solid #eee5d9;
+  padding: 12px 0;
+}
+
+.cart-item {
+  border-bottom: 1px solid #eee5d9;
+  padding-bottom: 20px;
+}
+
+.food-art {
+  background: #FEEFC8;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.item-info p,
+.summary-note,
+.promo-hint {
+  color: #86766d;
+  font-size: 12px;
+}
+
+.panel-heading,
+.total {
+  font-weight: bold;
+}
+
+.cart-footer,
+.item-actions {
+  text-align: right;
+}
