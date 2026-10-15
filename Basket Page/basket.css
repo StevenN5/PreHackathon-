@@ -88,10 +88,18 @@ dl div,
 }
 
 .summary {
-  flex: 1 1 260px;
+  flex: none;
   min-width: 0;
   background: #fffaf0;
   align-self: flex-start;
+}
+
+.summary-column {
+  flex: 1 1 260px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .empty-cart,
@@ -115,9 +123,31 @@ dl div,
 }
 
 .checkout {
+  display: block;
+  box-sizing: border-box;
   width: 100%;
-  padding: 14px;
+  min-height: 48px;
+  padding: 13px 18px;
+  border: 1px solid #E99731;
+  border-radius: 8px;
+  background: #FDB627;
+  color: #7A0402;
   font-weight: bold;
+  text-align: center;
+  line-height: 20px;
+  box-shadow: 0 2px 4px #7A04021a;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.checkout:hover {
+  background: #F4A900;
+  box-shadow: 0 4px 8px #7A040226;
+  transform: translateY(-1px);
+}
+
+.checkout:focus-visible {
+  outline: 3px solid #7A0402;
+  outline-offset: 3px;
 }
 
 .notice {
@@ -141,6 +171,96 @@ dl div,
   padding-bottom: 20px;
 }
 
+/* Finishing touches for the live cart layout */
+.basket-layout {
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.cart-panel,
+.summary {
+  background: #fff;
+  box-shadow: 0 8px 24px #7a04020b;
+}
+
+.summary-column .summary {
+  width: 100%;
+}
+
+.cart-panel>.cart-item {
+  justify-content: flex-start;
+  gap: 18px;
+  padding: 18px 0;
+  margin: 0;
+}
+
+.cart-item>img {
+  width: 88px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #fff4d9;
+}
+
+.item-actions {
+  display: grid;
+  gap: 10px;
+  text-align: right;
+}
+
+.summary h2,
+.cart-panel h2 {
+  margin-top: 0;
+}
+
+.summary dl {
+  margin: 18px 0;
+}
+
+.summary .total {
+  margin: 0;
+  padding-top: 14px;
+  border-top: 1px solid #f0e6d7;
+}
+
+.cart-panel [data-kosongkan] {
+  margin-top: 8px;
+}
+
+@media (max-width: 700px) {
+  #keranjang {
+    padding: 24px 0 36px;
+  }
+
+  .basket-layout {
+    gap: 16px;
+  }
+
+  .cart-panel,
+  .summary {
+    padding: 16px;
+  }
+
+  .cart-panel>.cart-item {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .cart-item>img {
+    width: 68px;
+    height: 68px;
+  }
+
+  .item-actions {
+    width: 100%;
+    text-align: left;
+  }
+
+  .checkout {
+    min-height: 46px;
+  }
+}
+
 .food-art {
   background: #FEEFC8;
   border-radius: 12px;
@@ -162,4 +282,8 @@ dl div,
 .cart-footer,
 .item-actions {
   text-align: right;
+}
+
+.header-divider {
+  margin: 0 12px
 }
