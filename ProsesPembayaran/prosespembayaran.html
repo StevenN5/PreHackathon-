@@ -1,55 +1,96 @@
 <!doctype html>
 <html lang="id">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#ee4d2d">
+  <meta name="theme-color" content="#96080D">
   <meta name="description" content="Halaman pembayaran pesanan belanja online.">
   <title>Checkout - JajanKuy</title>
   <link rel="stylesheet" href="stylepembayaran.css">
 </head>
+
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="index.html" aria-label="JajanKuy"><img class="brand-logo" src="JajanKuy_Snack_Emblem.png" alt="Logo JajanKuy"></a>
-      <span class="header-divider"></span>
-      <h1>Pembayaran</h1>
+      <a class="brand" href="../HomePage/jajankuy.html" aria-label="JajanKuy"><img class="brand-logo"
+          src="../asset/JajanKuy_Snack_Emblem.png" alt="Logo JajanKuy"></a>
     </div>
   </header>
 
   <main class="checkout-shell">
     <div class="checkout-steps" aria-label="Tahapan pesanan">
-      <div class="step complete"><span class="step-number">✓</span><span>Keranjang</span></div><span class="step-line"></span>
-      <div class="step active"><span class="step-number">2</span><span>Checkout</span></div><span class="step-line"></span>
+      <div class="step complete"><span class="step-number">✓</span><span>Keranjang</span></div><span
+        class="step-line"></span>
+      <div class="step active"><span class="step-number">2</span><span>Checkout</span></div><span
+        class="step-line"></span>
       <div class="step"><span class="step-number">3</span><span>Selesai</span></div>
     </div>
 
     <section class="panel order-panel">
-      <div class="order-heading"><h2>Keranjang Belanja</h2><span>Harga</span><span>Jumlah</span><span>Subtotal</span></div>
-      <div class="store-row"><span class="store-icon">JK</span><strong>JajanKuy Official</strong><span class="official">Mitra pilihan</span></div>
-      <article class="product-row">
-        <div class="product-cell"><div class="product-picture picture-orange"><span>🥔</span></div><div class="product-description"><h3>Keripik Kentang BBQ</h3><p>Rasa: Barbeque · Berat: 200 g</p><small class="stock-note">Stok tersedia</small></div></div>
-        <span class="unit-price">Rp28.000</span><div class="quantity-control"><button type="button" aria-label="Kurangi jumlah Keripik Kentang BBQ">−</button><input type="number" min="1" value="1" aria-label="Jumlah Keripik Kentang BBQ"><button type="button" aria-label="Tambah jumlah Keripik Kentang BBQ">+</button></div><div class="row-total"><strong class="subtotal">Rp28.000</strong><button class="delete-button" type="button">Hapus</button></div>
-      </article>
-      <article class="product-row">
-        <div class="product-cell"><div class="product-picture picture-pink"><span>🍿</span></div><div class="product-description"><h3>Popcorn Caramel</h3><p>Rasa: Caramel · Berat: 150 g</p><small class="stock-note">Stok tersedia</small></div></div>
-        <span class="unit-price">Rp22.000</span><div class="quantity-control"><button type="button" aria-label="Kurangi jumlah Popcorn Caramel">−</button><input type="number" min="1" value="2" aria-label="Jumlah Popcorn Caramel"><button type="button" aria-label="Tambah jumlah Popcorn Caramel">+</button></div><div class="row-total"><strong class="subtotal">Rp44.000</strong><button class="delete-button" type="button">Hapus</button></div>
-      </article>
-      <div class="note-row"><label for="catatan">Catatan pesanan</label><input id="catatan" type="text" placeholder="Tambahkan catatan untuk pesananmu (opsional)"></div>
+      <div class="order-heading">
+        <h2>Keranjang Belanja</h2><span>Harga</span><span>Jumlah</span><span>Subtotal</span>
+      </div>
+      <div id="payment-items">
+        <article class="product-row">
+          <div class="product-cell">
+            <div class="product-picture picture-orange"><span>🥔</span></div>
+            <div class="product-description">
+              <h3>Keripik Kentang BBQ</h3>
+              <p>Rasa: Barbeque · Berat: 200 g</p><small class="stock-note">Stok tersedia</small>
+            </div>
+          </div>
+          <span class="unit-price">Rp28.000</span>
+          <div class="quantity-control"><button type="button"
+              aria-label="Kurangi jumlah Keripik Kentang BBQ">−</button><input type="number" min="1" value="1"
+              aria-label="Jumlah Keripik Kentang BBQ"><button type="button"
+              aria-label="Tambah jumlah Keripik Kentang BBQ">+</button></div>
+          <div class="row-total"><strong class="subtotal">Rp28.000</strong><button class="delete-button"
+              type="button">Hapus</button></div>
+        </article>
+        <article class="product-row">
+          <div class="product-cell">
+            <div class="product-picture picture-pink"><span>🍿</span></div>
+            <div class="product-description">
+              <h3>Popcorn Caramel</h3>
+              <p>Rasa: Caramel · Berat: 150 g</p><small class="stock-note">Stok tersedia</small>
+            </div>
+          </div>
+          <span class="unit-price">Rp22.000</span>
+          <div class="quantity-control"><button type="button"
+              aria-label="Kurangi jumlah Popcorn Caramel">−</button><input type="number" min="1" value="2"
+              aria-label="Jumlah Popcorn Caramel"><button type="button"
+              aria-label="Tambah jumlah Popcorn Caramel">+</button></div>
+          <div class="row-total"><strong class="subtotal">Rp44.000</strong><button class="delete-button"
+              type="button">Hapus</button></div>
+        </article>
+      </div>
+      <div class="note-row"><label for="catatan">Catatan pesanan</label><input id="catatan" type="text"
+          placeholder="Tambahkan catatan untuk pesananmu (opsional)"></div>
     </section>
     <section class="panel total-panel">
-      <div class="total-content"><h2>Ringkasan Belanja</h2><div><span>Total harga (3 barang)</span><span>Rp72.000</span></div><div class="grand-total"><strong>Total Belanja</strong><strong>Rp72.000</strong></div></div>
+      <div class="total-content">
+        <h2>Ringkasan Belanja</h2>
+        <div><span id="payment-item-count">Total harga (0 barang)</span><span id="payment-subtotal">Rp0</span></div>
+        <div class="grand-total"><strong>Total Belanja</strong><strong id="payment-total">Rp14.000</strong></div>
+      </div>
     </section>
 
-    <footer class="checkout-footer"><p>Jumlah dan total akan diperbarui setelah fitur backend terhubung.</p><a class="place-order" href="#pembayaran-berhasil">Checkout <span>›</span></a></footer>
+    <footer class="checkout-footer">
+      <p>Pesanan dan total dihitung dari keranjangmu.</p><a class="place-order" id="place-order"
+        href="#pembayaran-berhasil">Checkout <span>›</span></a>
+    </footer>
   </main>
-  <section class="success-overlay" id="pembayaran-berhasil" role="alertdialog" aria-modal="true" aria-labelledby="success-title" aria-describedby="success-message">
+  <section class="success-overlay" id="pembayaran-berhasil" role="alertdialog" aria-modal="true"
+    aria-labelledby="success-title" aria-describedby="success-message">
     <div class="success-dialog">
       <span class="success-icon" aria-hidden="true"></span>
       <h2 id="success-title">Pembayaran berhasil!</h2>
       <p id="success-message">Terima kasih sudah berbelanja di JajanKuy. Pesananmu sedang kami siapkan.</p>
-      <a class="success-home" href="index.html">Kembali ke Beranda</a>
+      <a class="success-home" href="../HomePage/jajankuy.html">Kembali ke Beranda</a>
     </div>
   </section>
+  <script src="../script.js" defer></script>
 </body>
+
 </html>
