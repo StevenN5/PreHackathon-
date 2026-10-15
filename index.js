@@ -1,3 +1,18 @@
+const appRoot = new URL(".", document.currentScript.src);
+const appUrl = (path) => new URL(path, appRoot).href;
+const assetUrl = (path) => appUrl(`asset/${path.split(/[\\/]/).pop()}`);
+const kunciLogin = "jajankuy-login";
+const sudahLogin = localStorage.getItem(kunciLogin) === "true";
+const halamanTerproteksi = /\/(?:Basket Page\/basket(?:-filled)?\.html|ProsesPembayaran\/prosespembayaran\.html)$/i
+    .test(decodeURIComponent(window.location.pathname));
+
+if (halamanTerproteksi && !sudahLogin) {
+    const tujuan = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    const halamanLogin = new URL("loginpage/login.html", appRoot);
+    halamanLogin.searchParams.set("next", tujuan);
+    window.location.replace(halamanLogin.href);
+}
+
 let produk = [
     {
         nama: 'Siomay',
@@ -173,7 +188,7 @@ function homepage() {
         cardHTML += `
             <article class="product-card">
                 <div class="product-art ${card.bgClass}">
-                    <span><img src="${card.image}" alt="${card.nama}" width="300"></span>
+                    <span><img src="${assetUrl(card.image)}" alt="${card.nama}" width="300"></span>
                     <span class="product-tag">${card.tag}</span>
                     <button class="add-button"
                         data-index="${produk.indexOf(card)}"
@@ -206,7 +221,7 @@ function tampilkanBasket() {
                 <div class="empty-art" aria-hidden="true">🛍️</div>
                 <h2>Keranjang kamu masih kosong</h2>
                 <p>Yuk, temukan jajanan favorit untuk menemani harimu.</p>
-                <a href="../HomePage/jajankuy.html">Pilih jajanan →</a>
+                <a href="${appUrl("index.html")}">Pilih jajanan →</a>
             </div>`;
         return;
     }
@@ -215,7 +230,7 @@ function tampilkanBasket() {
     const subtotal = keranjang.reduce((total, item) => total + item.price * item.jumlah, 0);
     const itemsHTML = keranjang.map((item) => `
         <article class="cart-item">
-            <img src="${item.image}" alt="${item.nama}" width="90">
+            <img src="${assetUrl(item.image)}" alt="${item.nama}" width="90">
             <div class="item-info">
                 <h3>${item.nama}</h3>
                 <p>Rp${item.price.toLocaleString("id-ID")} / item</p>
@@ -246,7 +261,7 @@ function tampilkanBasket() {
                     <div class="total"><p>Total pembayaran</p>
                         <strong>Rp${(subtotal + 14000).toLocaleString("id-ID")}</strong></div>
                 </aside>
-                <a class="button checkout" href="../ProsesPembayaran/prosespembayaran.html">Lanjut pembayaran →</a>
+                <a class="button checkout" href="${appUrl("ProsesPembayaran/prosespembayaran.html")}">Lanjut pembayaran →</a>
             </div>
         </div>`;
 }
@@ -262,14 +277,14 @@ function tampilkanPembayaran() {
         ? keranjang.map((item) => `
             <article class="product-row">
                 <div class="product-cell">
-                    <div class="product-picture picture-orange"><img src="${item.image}" alt="${item.nama}" width="60"></div>
+                    <div class="product-picture picture-orange"><img src="${assetUrl(item.image)}" alt="${item.nama}" width="60"></div>
                     <div class="product-description"><h3>${item.nama}</h3><small class="stock-note">Stok tersedia</small></div>
                 </div>
                 <span class="unit-price">Rp${item.price.toLocaleString("id-ID")}</span>
                 <span class="quantity">${item.jumlah}</span>
                 <strong class="subtotal">Rp${(item.price * item.jumlah).toLocaleString("id-ID")}</strong>
             </article>`).join("")
-        : `<p>Keranjang masih kosong. <a href="../HomePage/jajankuy.html">Pilih jajanan</a>.</p>`;
+        : `<p>Keranjang masih kosong. <a href="${appUrl("index.html")}">Pilih jajanan</a>.</p>`;
 
     const labelJumlah = document.getElementById("payment-item-count");
     const labelSubtotal = document.getElementById("payment-subtotal");
@@ -308,6 +323,18 @@ document.addEventListener("click", (event) => {
     localStorage.setItem(kunciKeranjang, JSON.stringify(keranjang));
     tampilkanBasket();
     updateJumlahKeranjang();
+});
+
+document.addEventListener("submit", (event) => {
+    const form = event.target.closest("#login-form");
+    if (!form) return;
+
+    event.preventDefault();
+    localStorage.setItem(kunciLogin, "true");
+
+    const params = new URLSearchParams(window.location.search);
+    const tujuan = new URL(params.get("next") || "index.html", appRoot);
+    window.location.assign(tujuan.href.startsWith(appRoot.href) ? tujuan.href : appUrl("index.html"));
 });
 
 document.addEventListener("change", (event) => {
