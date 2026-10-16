@@ -239,7 +239,7 @@ function tampilkanBasket() {
                 <strong>${item.jumlah} × Rp${item.price.toLocaleString("id-ID")}</strong>
                 <div class="controls">
                     <label class="quantity">Jumlah
-                        <input type="number" min="1" max="99" value="${item.jumlah}" data-jumlah="${item.nama}">
+                        <span class="quantity-control"><button type="button" data-ubah="-1" data-produk="${item.nama}" aria-label="Kurangi ${item.nama}">−</button><input type="number" min="1" max="99" value="${item.jumlah}" data-jumlah="${item.nama}" aria-label="Jumlah ${item.nama}"><button type="button" data-ubah="1" data-produk="${item.nama}" aria-label="Tambah ${item.nama}">+</button></span>
                     </label>
                     <button type="button" data-hapus="${item.nama}">Hapus</button>
                 </div>
@@ -281,8 +281,8 @@ function tampilkanPembayaran() {
                     <div class="product-description"><h3>${item.nama}</h3><small class="stock-note">Stok tersedia</small></div>
                 </div>
                 <span class="unit-price">Rp${item.price.toLocaleString("id-ID")}</span>
-                <span class="quantity">${item.jumlah}</span>
-                <strong class="subtotal">Rp${(item.price * item.jumlah).toLocaleString("id-ID")}</strong>
+                <div class="quantity-control"><button type="button" data-ubah="-1" data-produk="${item.nama}" aria-label="Kurangi ${item.nama}">−</button><input type="number" min="1" max="99" value="${item.jumlah}" data-jumlah="${item.nama}" aria-label="Jumlah ${item.nama}"><button type="button" data-ubah="1" data-produk="${item.nama}" aria-label="Tambah ${item.nama}">+</button></div>
+                <div class="row-total"><strong class="subtotal">Rp${(item.price * item.jumlah).toLocaleString("id-ID")}</strong><button class="delete-button" type="button" data-hapus="${item.nama}">Hapus</button></div>
             </article>`).join("")
         : `<p>Keranjang masih kosong. <a href="${appUrl("index.html")}">Pilih jajanan</a>.</p>`;
 
@@ -302,6 +302,18 @@ document.addEventListener("click", (event) => {
         return;
     }
 
+    const ubahJumlah = event.target.closest("[data-ubah]");
+    if (ubahJumlah) {
+        const item = keranjang.find((produk) => produk.nama === ubahJumlah.dataset.produk);
+        if (!item) return;
+        item.jumlah = Math.max(1, Math.min(99, item.jumlah + Number(ubahJumlah.dataset.ubah)));
+        localStorage.setItem(kunciKeranjang, JSON.stringify(keranjang));
+        tampilkanBasket();
+        tampilkanPembayaran();
+        updateJumlahKeranjang();
+        return;
+    }
+
     const hapus = event.target.closest("[data-hapus]");
     if (hapus) {
         keranjang = keranjang.filter((item) => item.nama !== hapus.dataset.hapus);
@@ -310,6 +322,14 @@ document.addEventListener("click", (event) => {
     } else if (event.target.closest("#place-order")) {
         event.preventDefault();
         if (keranjang.length === 0) return;
+        const tahapan = document.querySelectorAll(".checkout-steps .step");
+        if (tahapan.length >= 3) {
+            tahapan[1].classList.remove("active");
+            tahapan[1].classList.add("complete");
+            tahapan[1].querySelector(".step-number").textContent = "✓";
+            tahapan[2].classList.add("active");
+            tahapan[2].setAttribute("aria-current", "step");
+        }
         document.getElementById("pembayaran-berhasil")?.classList.add("show-success");
         keranjang = [];
         localStorage.setItem(kunciKeranjang, JSON.stringify(keranjang));
@@ -322,6 +342,7 @@ document.addEventListener("click", (event) => {
 
     localStorage.setItem(kunciKeranjang, JSON.stringify(keranjang));
     tampilkanBasket();
+    tampilkanPembayaran();
     updateJumlahKeranjang();
 });
 
@@ -349,6 +370,7 @@ document.addEventListener("change", (event) => {
     if (item) item.jumlah = jumlah;
     localStorage.setItem(kunciKeranjang, JSON.stringify(keranjang));
     tampilkanBasket();
+    tampilkanPembayaran();
     updateJumlahKeranjang();
 });
 
