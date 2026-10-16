@@ -52,6 +52,38 @@ dl div,
   gap: 16px;
 }
 
+.quantity-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid #e5e0db;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.quantity-control button {
+  width: 30px;
+  padding: 4px;
+  border: 0;
+  border-radius: 0;
+}
+
+.quantity-control input {
+  width: 42px;
+  padding: 5px 2px;
+  border: 0;
+  border-left: 1px solid #e5e0db;
+  border-right: 1px solid #e5e0db;
+  border-radius: 0;
+  text-align: center;
+}
+
+.delete-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
 .brand-logo {
   width: 76px;
   display: block;
