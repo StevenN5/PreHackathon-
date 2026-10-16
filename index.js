@@ -259,7 +259,7 @@ function tampilkanBasket() {
                     <dl><div><dt>Subtotal (${jumlah} item)</dt>
                         <dd>Rp${subtotal.toLocaleString("id-ID")}</dd></div></dl>
                     <div class="total"><p>Total pembayaran</p>
-                        <strong>Rp${(subtotal + 14000).toLocaleString("id-ID")}</strong></div>
+                        <strong>Rp${subtotal.toLocaleString("id-ID")}</strong></div>
                 </aside>
                 <a class="button checkout" href="${appUrl("ProsesPembayaran/prosespembayaran.html")}">Lanjut pembayaran →</a>
             </div>
@@ -291,7 +291,7 @@ function tampilkanPembayaran() {
     const labelTotal = document.getElementById("payment-total");
     if (labelJumlah) labelJumlah.textContent = `Total harga (${jumlah} barang)`;
     if (labelSubtotal) labelSubtotal.textContent = `Rp${subtotal.toLocaleString("id-ID")}`;
-    if (labelTotal) labelTotal.textContent = `Rp${(subtotal + 14000).toLocaleString("id-ID")}`;
+    if (labelTotal) labelTotal.textContent = `Rp${subtotal.toLocaleString("id-ID")}`;
 }
 
 document.addEventListener("click", (event) => {
